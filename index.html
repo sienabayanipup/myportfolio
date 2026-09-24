@@ -7,7 +7,7 @@
 <meta name="description" content="Siena A. Bayani — Operations Support, QA Review &amp; AI Data Quality professional. I make complex work feel organized.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Nunito:wght@400;500;600;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Nunito:wght@400;500;600;700;800&family=Quicksand:wght@500;600;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --paper:#FBF3E7;
@@ -189,12 +189,20 @@
     margin-bottom:22px;
   }
   .hero-kicker svg{ width:22px; height:22px; flex:none; }
+  .hero-role{ font-size:15.5px; margin-bottom:26px; }
   .hero h1{
     font-size:clamp(44px, 6vw, 78px);
     line-height:1.02;
     max-width:12ch;
-    margin-bottom:26px;
+    margin-bottom:16px;
     font-weight:500;
+  }
+  .hero h1 .accent-script{
+    font-family:'Dancing Script', 'Brush Script MT', cursive;
+    font-style:normal; font-weight:700;
+    font-size:1.18em; line-height:0.9;
+    color:var(--amber);
+    letter-spacing:0;
   }
   .hero h1 .accent-teal{ font-style:italic; font-weight:600; color:var(--teal); }
   .hero h1 .accent-amber{ font-style:italic; font-weight:600; color:var(--amber); }
@@ -319,6 +327,39 @@
 
   .reveal{ opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease; }
   .reveal.in{ opacity:1; transform:none; }
+
+  /* ---------- section backgrounds (breaks up the single-color scroll) ---------- */
+  #about, #services{ overflow:hidden; isolation:isolate; }
+  #about::before, #services::before{
+    content:''; position:absolute; inset:0; z-index:-1; pointer-events:none;
+  }
+
+  /* Palette: #C78997 (sw1) · #F5B297 (sw2) · #F5D6A2 (sw3) · #F5E4C4 (sw4) · #8A99B1 (sw5) */
+
+  /* About — sw4 sand, glowing with sw1 rose + sw2 peach */
+  #about{
+    background-color:#F5E4C4;
+    border-top:1.5px solid rgba(199,137,151,0.45);
+    border-bottom:1.5px solid rgba(199,137,151,0.45);
+  }
+  #about::before{
+    background:
+      radial-gradient(circle at 94% 6%,  rgba(199,137,151,0.42), transparent 42%),
+      radial-gradient(circle at 4% 94%,  rgba(245,178,151,0.50), transparent 44%);
+  }
+
+  /* Services — sw3 golden, warming into sw2 peach, with a sw5 blue accent glow */
+  #services{
+    background-color:#F5D6A2;
+    border-top:1.5px solid rgba(245,178,151,0.7);
+    border-bottom:1.5px solid rgba(245,178,151,0.7);
+  }
+  #services::before{
+    background:
+      radial-gradient(circle at 6% 8%,   rgba(245,228,196,0.65), transparent 42%),
+      radial-gradient(circle at 96% 92%, rgba(138,153,177,0.30), transparent 44%),
+      radial-gradient(circle at 50% 108%, rgba(245,178,151,0.55), transparent 55%);
+  }
 
   /* ---------- what I bring: pinned note grid ---------- */
   .bring-list{
@@ -450,31 +491,21 @@
   .feature-chips{ display:flex; flex-wrap:wrap; gap:8px; margin-top:6px; }
   .feature-chips span{ font-family:'Quicksand', sans-serif; font-weight:600; font-size:11.5px; color:#F0DDE0; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14); padding:6px 12px; border-radius:100px; }
 
-  /* ---------- experience timeline ---------- */
-  .exp-list{ display:flex; flex-direction:column; }
-  .exp-item{
-    position:relative;
-    display:grid;
-    grid-template-columns:200px 1fr;
-    gap:36px;
-    padding:34px 0 34px 26px;
-    border-top:1px solid var(--line);
+  /* ---------- experiences: short cards ---------- */
+  .exp-grid{ display:grid; grid-template-columns:repeat(3, 1fr); gap:18px; }
+  .exp-card{
+    background:var(--panel);
+    border:1.5px solid var(--line);
+    border-left:4px solid var(--c, var(--teal));
+    border-radius:4px 16px 16px 4px;
+    padding:22px 24px;
+    transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
   }
-  .exp-item::before{
-    content:'';
-    position:absolute; left:0; top:42px;
-    width:12px; height:12px;
-    border-radius:50%;
-    background:var(--c, var(--teal));
-    box-shadow:0 2px 5px rgba(62,44,51,0.25);
-  }
-  .exp-item:last-child{ border-bottom:1px solid var(--line); }
-  .exp-date{ font-family:'Quicksand', sans-serif; font-size:12.5px; color:var(--ink-soft); padding-top:4px; }
-  .exp-body h3{ font-size:21px; margin-bottom:2px; }
-  .exp-body .org{ font-size:14px; color:var(--c, var(--teal)); font-weight:600; margin-bottom:14px; display:block; }
-  .exp-body ul{ display:flex; flex-direction:column; gap:8px; }
-  .exp-body li{ font-size:14.5px; color:var(--ink-soft); padding-left:16px; position:relative; }
-  .exp-body li::before{ content:'✦'; position:absolute; left:0; font-size:11px; top:3px; color:var(--c, var(--node)); }
+  .exp-card:hover{ transform:translateY(-4px); box-shadow:0 14px 28px rgba(62,44,51,0.14); }
+  .exp-card h3{ font-size:17.5px; margin-bottom:8px; }
+  .exp-card p{ font-size:13.5px; color:var(--ink-soft); }
+  @media (max-width:900px){ .exp-grid{ grid-template-columns:1fr 1fr; } }
+  @media (max-width:680px){ .exp-grid{ grid-template-columns:1fr; } }
 
   /* ---------- skills ---------- */
   .skill-groups{ display:grid; grid-template-columns:1fr 1fr; gap:28px; }
@@ -491,6 +522,9 @@
     transition:all .2s ease;
   }
   .chip:hover{ background:var(--teal); color:#fff; border-color:var(--teal); transform:rotate(-1deg); }
+  .chip-icon{ display:inline-flex; align-items:center; gap:7px; }
+  .chip-icon img{ width:15px; height:15px; flex:none; border-radius:3px; }
+  .chip-icon:hover img{ filter:brightness(0) invert(1); }
 
   /* ---------- education ---------- */
   .edu-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px;}
@@ -560,7 +594,7 @@
 <div id="top"></div>
 <header>
   <nav>
-    <div class="brand">
+    <div class="brand" aria-label="Siena Bayani">
       <span class="mark">
         <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -573,13 +607,13 @@
           <text x="20" y="26" text-anchor="middle" font-family="Fraunces, serif" font-style="italic" font-weight="700" font-size="17" fill="#FFFDF8">SB</text>
         </svg>
       </span>
-      Siena Bayani
     </div>
     <ul class="nav-links" id="navLinks">
       <li><a href="#top">Home</a></li>
       <li><a href="#about">About</a></li>
-      <li><a href="#experience">Experience</a></li>
+      <li><a href="#services">Services</a></li>
       <li><a href="#project">Project</a></li>
+      <li><a href="#why-me">Why Me</a></li>
     </ul>
     <div class="nav-right">
       <a href="#cta" class="nav-cta">Let's Talk</a>
@@ -592,11 +626,11 @@
   <div class="wrap">
     <div class="hero-grid">
       <div class="hero-main">
-        <div class="hero-kicker">
+        <h1><span class="accent-teal">Siena</span><br><span class="accent-script">Bayani</span></h1>
+        <div class="hero-kicker hero-role">
           <svg viewBox="0 0 24 24" fill="none"><path d="M4 12c2-4 5-6 8-6s6 2 8 6c-2 4-5 6-8 6s-6-2-8-6Z" stroke="var(--teal)" stroke-width="1.6"/><circle cx="12" cy="12" r="2.4" fill="var(--teal)"/></svg>
-          Operations · QA · AI Data Quality
+          Operations Support · QA Review · AI Data Quality
         </div>
-        <h1><span class="accent-teal">Structure</span> in.<br><span class="accent-amber">Clarity</span> out.</h1>
         <p class="hero-sub">I bring structure to operations, precision to quality assurance, and thoughtful judgment to AI data work, helping teams work more clearly, consistently, and efficiently.</p>
         <div class="hero-actions">
           <a href="#project" class="btn btn-primary">Explore My Work →</a>
@@ -680,31 +714,31 @@
       <div class="skill-group">
         <h4>Productivity &amp; Admin</h4>
         <div class="chip-row">
-          <span class="chip">Google Docs</span><span class="chip">Google Sheets</span><span class="chip">Google Slides</span><span class="chip">Google Drive</span><span class="chip">Google Calendar</span><span class="chip">Microsoft 365</span><span class="chip">Notion</span>
+          <span class="chip chip-icon"><img src="https://cdn.simpleicons.org/googledocs/4285F4" alt="" onerror="this.remove()">Google Docs</span><span class="chip chip-icon"><img src="https://cdn.simpleicons.org/googlesheets/34A853" alt="" onerror="this.remove()">Google Sheets</span><span class="chip chip-icon"><img src="https://cdn.simpleicons.org/googleslides/FBBC04" alt="" onerror="this.remove()">Google Slides</span><span class="chip chip-icon"><img src="https://cdn.simpleicons.org/googledrive/4285F4" alt="" onerror="this.remove()">Google Drive</span><span class="chip chip-icon"><img src="https://cdn.simpleicons.org/googlecalendar/4285F4" alt="" onerror="this.remove()">Google Calendar</span><span class="chip chip-icon"><img src="https://cdn.simpleicons.org/microsoftoffice/D83B01" alt="" onerror="this.remove()">Microsoft 365</span><span class="chip chip-icon"><img src="https://cdn.simpleicons.org/notion/000000" alt="" onerror="this.remove()">Notion</span>
         </div>
       </div>
       <div class="skill-group">
         <h4>Communication</h4>
         <div class="chip-row">
-          <span class="chip">Slack</span><span class="chip">Zoom</span><span class="chip">Google Meet</span><span class="chip">Loom</span><span class="chip">MS Teams</span>
+          <span class="chip chip-icon"><img src="https://cdn.simpleicons.org/slack/4A154B" alt="" onerror="this.remove()">Slack</span><span class="chip chip-icon"><img src="https://cdn.simpleicons.org/zoom/2D8CFF" alt="" onerror="this.remove()">Zoom</span><span class="chip chip-icon"><img src="https://cdn.simpleicons.org/googlemeet/00897B" alt="" onerror="this.remove()">Google Meet</span><span class="chip chip-icon"><img src="https://cdn.simpleicons.org/loom/625DF5" alt="" onerror="this.remove()">Loom</span><span class="chip chip-icon"><img src="https://cdn.simpleicons.org/microsoftteams/6264A7" alt="" onerror="this.remove()">MS Teams</span>
         </div>
       </div>
       <div class="skill-group">
         <h4>AI &amp; Data Tools</h4>
         <div class="chip-row">
-          <span class="chip">ChatGPT</span><span class="chip">Gemini</span><span class="chip">Claude</span><span class="chip">Grammarly</span><span class="chip">Labelbox</span><span class="chip">Multimango</span><span class="chip">SRT</span><span class="chip">Google Apps Script</span>
+          <span class="chip chip-icon"><img src="https://cdn.simpleicons.org/openai/000000" alt="" onerror="this.remove()">ChatGPT</span><span class="chip chip-icon"><img src="https://cdn.simpleicons.org/googlegemini/8E75B2" alt="" onerror="this.remove()">Gemini</span><span class="chip chip-icon"><img src="https://cdn.simpleicons.org/anthropic/191919" alt="" onerror="this.remove()">Claude</span><span class="chip chip-icon"><img src="https://cdn.simpleicons.org/grammarly/15C39A" alt="" onerror="this.remove()">Grammarly</span><span class="chip">Labelbox</span><span class="chip">Multimango</span><span class="chip">SRT</span><span class="chip chip-icon"><img src="https://cdn.simpleicons.org/googleappsscript/4285F4" alt="" onerror="this.remove()">Google Apps Script</span>
         </div>
       </div>
       <div class="skill-group">
         <h4>Design &amp; Content</h4>
         <div class="chip-row">
-          <span class="chip">Canva</span><span class="chip">CapCut</span>
+          <span class="chip chip-icon"><img src="https://cdn.simpleicons.org/canva/00C4CC" alt="" onerror="this.remove()">Canva</span><span class="chip chip-icon"><img src="https://cdn.simpleicons.org/capcut/000000" alt="" onerror="this.remove()">CapCut</span>
         </div>
       </div>
       <div class="skill-group">
         <h4>Project Management</h4>
         <div class="chip-row">
-          <span class="chip">Asana</span><span class="chip">Trello</span><span class="chip">ClickUp</span>
+          <span class="chip chip-icon"><img src="https://cdn.simpleicons.org/asana/F06A6A" alt="" onerror="this.remove()">Asana</span><span class="chip chip-icon"><img src="https://cdn.simpleicons.org/trello/0052CC" alt="" onerror="this.remove()">Trello</span><span class="chip chip-icon"><img src="https://cdn.simpleicons.org/clickup/7B68EE" alt="" onerror="this.remove()">ClickUp</span>
         </div>
       </div>
       <div class="skill-group">
@@ -714,8 +748,12 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
 
-    <div class="section-head reveal" style="margin-top:64px;">
+<section id="education">
+  <div class="wrap">
+    <div class="section-head reveal">
       <span class="tag"><span class="dot"></span>education &amp; certifications</span>
       <h2>Grounded in the fundamentals.</h2>
     </div>
@@ -736,43 +774,68 @@
       <div class="cert-row"><span class="cert-name">Business Analytics Concepts &amp; Frameworks</span><span class="cert-meta">UP Open University · 2024</span></div>
       <div class="cert-row"><span class="cert-name">Principles of Graphic Design</span><span class="cert-meta">UP Open University · 2024</span></div>
     </div>
+  </div>
+</section>
 
-    <div class="section-head reveal" style="margin-top:64px;">
-      <span class="tag amber"><span class="dot"></span>remote work readiness</span>
-      <h2>Set up to work like I'm in the room.</h2>
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="tag"><span class="dot"></span>experiences</span>
+      <h2>Five roles, one thread: keep things accurate and organized.</h2>
+      <p>Teaching taught patience, annotation taught precision, and QA tied it all together.</p>
     </div>
-    <div class="spec-panel reveal">
-      <div class="spec-topbar">
-        <span></span><span></span><span></span>
-        <span class="file">remote-setup.spec</span>
+    <div class="exp-grid reveal">
+      <div class="exp-card" style="--c:var(--sw1)">
+        <h3>Analyst</h3>
+        <p>Evaluating AI search-relevance and content quality, catching issues before they reach production.</p>
       </div>
-      <div class="spec-body">
-        <div class="spec-item">
-          <div class="k">Internet</div>
-          <div class="v">Converge Fiber 100 Mbps<small>Backup: Smart 5G mobile hotspot</small></div>
-        </div>
-        <div class="spec-item">
-          <div class="k">Power Backup</div>
-          <div class="v">Prolink UPS 650VA<small>2-hour backup runtime</small></div>
-        </div>
-        <div class="spec-item">
-          <div class="k">Equipment</div>
-          <div class="v">Desktop · Dual monitors<small>Asus Vivobook · Noise-cancelling headset · HD webcam</small></div>
-        </div>
-        <div class="spec-item">
-          <div class="k">Workspace</div>
-          <div class="v">Dedicated home office<small>Quiet environment · Professional video-call background</small></div>
-        </div>
+      <div class="exp-card" style="--c:var(--sw2)">
+        <h3>English Tutor / Head Teacher</h3>
+        <p>Teaching and mentoring students one-on-one, and training new tutors to keep quality consistent.</p>
       </div>
-      <div class="spec-body" style="grid-template-columns:1fr 1fr; padding-top:0;">
-        <div class="spec-item">
-          <div class="k">Availability</div>
-          <div class="v">Full-time, flexible<small>US (EST/PST) · UK (GMT) · AU (AEST)</small></div>
-        </div>
-        <div class="spec-item">
-          <div class="k">Languages</div>
-          <div class="v">English — fluent/proficient<small>Filipino — native/fluent</small></div>
-        </div>
+      <div class="exp-card" style="--c:var(--sw3)">
+        <h3>Data Labeler / Annotator</h3>
+        <p>Labeling and verifying AI training data across languages for accuracy and consistency.</p>
+      </div>
+      <div class="exp-card" style="--c:var(--sw4)">
+        <h3>AI Chatbot Trainer</h3>
+        <p>Reviewing chatbot responses and feeding back detailed notes to sharpen accuracy.</p>
+      </div>
+      <div class="exp-card" style="--c:var(--sw5)">
+        <h3>QA Team Lead</h3>
+        <p>Leading a remote QA team, improving workflows and onboarding new contributors.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="tag amber"><span class="dot"></span>services</span>
+      <h2>How I can support your team.</h2>
+      <p>Pick a lane below, or mix and match — most clients start with one and grow into a few.</p>
+    </div>
+    <div class="exp-grid reveal">
+      <div class="exp-card" style="--c:var(--sw1)">
+        <h3>QA &amp; AI Data Review</h3>
+        <p>Reviewing AI training and evaluation outputs against guidelines, flagging mismatches, and writing clear rating justifications.</p>
+      </div>
+      <div class="exp-card" style="--c:var(--sw2)">
+        <h3>Operations &amp; Workflow Support</h3>
+        <p>Task tracking, handoffs, and spreadsheet reporting that keep fast-moving projects from falling through the cracks.</p>
+      </div>
+      <div class="exp-card" style="--c:var(--sw3)">
+        <h3>Data Annotation &amp; Labeling</h3>
+        <p>Multilingual annotation, content verification, and dataset discrepancy reporting done to spec.</p>
+      </div>
+      <div class="exp-card" style="--c:var(--sw4)">
+        <h3>Virtual Assistance &amp; Admin</h3>
+        <p>Inbox, calendar, documents, and day-to-day admin handled reliably so you can focus on higher-leverage work.</p>
+      </div>
+      <div class="exp-card" style="--c:var(--sw5)">
+        <h3>Team Training &amp; Onboarding</h3>
+        <p>Onboarding new contributors and documenting processes so quality holds steady as a team grows.</p>
       </div>
     </div>
   </div>
@@ -850,77 +913,71 @@
   </div>
 </section>
 
-<section id="experience">
+<section id="remote-setup">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="tag"><span class="dot"></span>experience</span>
-      <h2>Five roles, one thread: keep things accurate and organized.</h2>
-      <p>Teaching taught patience, annotation taught precision, and QA tied it all together.</p>
+      <span class="tag amber"><span class="dot"></span>remote work readiness</span>
+      <h2>Set up to work like I'm in the room.</h2>
     </div>
-    <div class="exp-list reveal">
-      <div class="exp-item" style="--c:var(--sw1)">
-        <div class="exp-date">MAR 2026 — PRESENT</div>
-        <div class="exp-body">
-          <h3>Analyst</h3>
-          <span class="org">Innodata Inc.</span>
-          <ul>
-            <li>Evaluated search-query relevance and visual content alignment to support AI quality improvement initiatives.</li>
-            <li>Produced clear rating justifications that improved accuracy and consistency across review tasks.</li>
-            <li>Identified metadata mismatches, broken links, and sensitive content issues during high-volume evaluations.</li>
-            <li>Consistently met daily production and quality targets while adapting to evolving project guidelines.</li>
-          </ul>
+    <div class="spec-panel reveal">
+      <div class="spec-topbar">
+        <span></span><span></span><span></span>
+        <span class="file">remote-setup.spec</span>
+      </div>
+      <div class="spec-body">
+        <div class="spec-item">
+          <div class="k">Internet</div>
+          <div class="v">Converge Fiber 100 Mbps<small>Backup: Smart 5G mobile hotspot</small></div>
+        </div>
+        <div class="spec-item">
+          <div class="k">Power Backup</div>
+          <div class="v">Prolink UPS 650VA<small>2-hour backup runtime</small></div>
+        </div>
+        <div class="spec-item">
+          <div class="k">Equipment</div>
+          <div class="v">Desktop · Dual monitors<small>Asus Vivobook · Noise-cancelling headset · HD webcam</small></div>
+        </div>
+        <div class="spec-item">
+          <div class="k">Workspace</div>
+          <div class="v">Dedicated home office<small>Quiet environment · Professional video-call background</small></div>
         </div>
       </div>
-      <div class="exp-item" style="--c:var(--sw2)">
-        <div class="exp-date">DEC 2014 — PRESENT</div>
-        <div class="exp-body">
-          <h3>English Tutor / Head Teacher</h3>
-          <span class="org">Phil-Korean Online English</span>
-          <ul>
-            <li>Conducted 20+ weekly one-on-one virtual English sessions for Korean students across multiple proficiency levels.</li>
-            <li>Created structured lesson plans focused on grammar, conversation, reading, and writing improvement.</li>
-            <li>Tracked student performance and developed personalized learning roadmaps to improve engagement and retention.</li>
-            <li>Trained and supervised new tutors to maintain teaching quality and classroom consistency.</li>
-          </ul>
+      <div class="spec-body" style="grid-template-columns:1fr 1fr; padding-top:0;">
+        <div class="spec-item">
+          <div class="k">Availability</div>
+          <div class="v">Full-time, flexible<small>US (EST/PST) · UK (GMT) · AU (AEST)</small></div>
+        </div>
+        <div class="spec-item">
+          <div class="k">Languages</div>
+          <div class="v">English — fluent/proficient<small>Filipino — native/fluent</small></div>
         </div>
       </div>
-      <div class="exp-item" style="--c:var(--sw3)">
-        <div class="exp-date">MAR 2021 — MAR 2026</div>
-        <div class="exp-body">
-          <h3>Data Labeler / Annotator</h3>
-          <span class="org">Remotask / Outlier</span>
-          <ul>
-            <li>Labeled and reviewed AI training datasets while maintaining accuracy and compliance with project standards.</li>
-            <li>Verified multilingual content for contextual accuracy and data consistency across annotation tasks.</li>
-            <li>Reported dataset discrepancies and quality concerns to support clean and reliable AI model inputs.</li>
-            <li>Assisted with project documentation and workflow updates for remote teams.</li>
-          </ul>
-        </div>
+    </div>
+  </div>
+</section>
+
+<section id="why-me">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="tag"><span class="dot"></span>why work with me</span>
+      <h2>Why teams keep coming back.</h2>
+    </div>
+    <div class="skill-groups reveal">
+      <div class="skill-group">
+        <h4>Reliable &amp; Detail-Oriented</h4>
+        <p>Five years of QA and annotation work has trained me to catch what others miss — and to say so clearly, without drama.</p>
       </div>
-      <div class="exp-item" style="--c:var(--sw4)">
-        <div class="exp-date">FEB 2025 — JUN 2025</div>
-        <div class="exp-body">
-          <h3>AI Chatbot Trainer</h3>
-          <span class="org">Alignerr</span>
-          <ul>
-            <li>Reviewed and evaluated chatbot responses to improve conversational accuracy and user experience.</li>
-            <li>Submitted detailed feedback reports that supported AI response refinement and workflow optimization.</li>
-            <li>Collaborated with remote teams to align chatbot outputs with quality and business requirements.</li>
-          </ul>
-        </div>
+      <div class="skill-group">
+        <h4>Fast, Clear Communication</h4>
+        <p>Updates, questions, and blockers get flagged early. You'll never be wondering where something stands.</p>
       </div>
-      <div class="exp-item" style="--c:var(--sw5)">
-        <div class="exp-date">JUL 2024 — FEB 2025</div>
-        <div class="exp-body">
-          <h3>PHQA Team Lead</h3>
-          <span class="org">Outlier</span>
-          <ul>
-            <li>Monitored contributor performance, workflow compliance, and task completion across remote QA operations, and conducted performance reviews to maintain quality standards.</li>
-            <li>Implemented workflow improvements that increased team efficiency and task accuracy.</li>
-            <li>Coordinated escalation handling and issue resolution to support smooth project operations.</li>
-            <li>Facilitated onboarding and training sessions for new team members.</li>
-          </ul>
-        </div>
+      <div class="skill-group">
+        <h4>Remote-Ready From Day One</h4>
+        <p>Fiber backup, UPS power, dual monitors, and a quiet dedicated workspace — no excuses, no downtime.</p>
+      </div>
+      <div class="skill-group">
+        <h4>I Improve What I Touch</h4>
+        <p>As a QA Team Lead I didn't just follow process — I measurably improved it. I bring that same instinct to every project.</p>
       </div>
     </div>
   </div>
